@@ -52,8 +52,15 @@ new Vue({
         heal() {
             const monst = Math.floor(Math.random() * 10);
             this.you -= monst;
-            this.you += 10;
-            this.log.unshift({heal:10,monster:monst});
+            if(this.you > 90) {
+                const diff = 90 - this.you + 10;
+                this.you = 100;
+                this.log.unshift({heal:diff,monster:monst});
+            } else {
+                this.you += 10;
+                this.log.unshift({heal:10,monster:monst});
+            }
+            
         }
     }
 })
